@@ -1,0 +1,15 @@
+service: asm-service
+provider:
+  name: aws
+  runtime: provided
+  region: us-west-2
+
+functions:
+  hello:
+    handler: test.handler
+    layers:
+      # In order to get this Ref name you will TitleCase the layer name ("php" --> "Php") and append "LambdaLayer"
+      - {Ref: BashLambdaLayer}
+layers:
+  bash:
+    path: layer/bash
